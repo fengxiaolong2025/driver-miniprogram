@@ -1,0 +1,133 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #166d43 0%, #1d7d4f 42%, #f5f6f8 42.1%);
+  padding: 0 48rpx;
+  box-sizing: border-box;
+}
+
+.brand {
+  padding: 120rpx 0 60rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.brand-logo {
+  font-size: 96rpx;
+  line-height: 1.2;
+}
+
+.brand-title {
+  margin-top: 20rpx;
+  font-size: 48rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.brand-sub {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  opacity: 0.85;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 48rpx 40rpx;
+  box-shadow: 0 12rpx 40rpx rgba(22, 109, 67, 0.18);
+}
+
+.card-hint {
+  font-size: 26rpx;
+  color: #888;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.btn-wecom {
+  background: #166d43;
+  color: #fff;
+  border-radius: 16rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  height: 96rpx;
+  line-height: 96rpx;
+}
+
+.btn-wecom::after {
+  border: none;
+}
+
+.btn-wecom[disabled] {
+  background: #a8c8b8 !important;
+  color: #fff !important;
+}
+
+.wecom-tip {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  color: #aaa;
+  text-align: center;
+}
+
+.debug-area {
+  margin-top: 32rpx;
+}
+
+.debug-divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1rpx;
+  background: #eee;
+}
+
+.divider-text {
+  padding: 0 20rpx;
+  font-size: 22rpx;
+  color: #bbb;
+}
+
+.debug-input {
+  background: #f5f6f8;
+  border-radius: 12rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.btn-debug {
+  margin-top: 20rpx;
+  background: #fff;
+  color: #166d43;
+  border: 2rpx solid #166d43;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  height: 84rpx;
+  line-height: 80rpx;
+}
+
+.btn-debug::after {
+  border: none;
+}
+
+.err {
+  margin-top: 20rpx;
+  color: #e64340;
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.login-footer {
+  margin-top: 60rpx;
+  text-align: center;
+  color: #bbb;
+  font-size: 22rpx;
+  padding-bottom: 40rpx;
+}

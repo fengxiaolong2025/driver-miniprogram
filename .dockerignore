@@ -1,0 +1,12 @@
+# 本地数据与运行状态不进镜像
+server/driver.db
+server/driver.db-wal
+server/driver.db-shm
+server/uploads/
+server/*.log
+server/sync_status.json
+server/__pycache__/
+**/__pycache__/
+**/*.pyc
+.workbuddy/
+.git/

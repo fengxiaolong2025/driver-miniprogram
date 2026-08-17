@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">🔧 我要保养</view>
+
+    <view class="form-item">
+      <view class="form-label">保养时间</view>
+      <picker class="form-value" mode="date" value="{{date}}" bindchange="onDate">
+        <view class="picker-value">{{date}}</view>
+      </picker>
+      <picker class="form-value" mode="time" value="{{time}}" bindchange="onTime">
+        <view class="picker-value">{{time}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">保养项目</view>
+      <textarea class="form-value textarea" placeholder="如：更换机油、机滤、空气滤芯" value="{{items}}" bindinput="onItems" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">费用</view>
+      <input class="form-value input" type="digit" placeholder="元（选填）" value="{{cost}}" bindinput="onCost" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">车牌号</view>
+      <picker class="form-value" mode="selector" range="{{vehicles}}" bindchange="onVeh">
+        <view class="{{vehIndex >= 0 ? 'picker-value' : 'picker-placeholder'}}">
+          {{vehIndex >= 0 ? vehicles[vehIndex] : '选填'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">备注</view>
+      <textarea class="form-value textarea" placeholder="其他说明（选填）" value="{{remark}}" bindinput="onRemark" />
+    </view>
+  </view>
+
+  <!-- 照片上传 -->
+  <view class="card">
+    <view class="card-title">📷 保养照片</view>
+    <block wx:if="{{!photoPath}}">
+      <view class="photo-upload" bindtap="onChoosePhoto">
+        <view class="photo-plus">＋</view>
+        <view class="photo-tip">拍照或从相册选择</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="photo-preview-wrap">
+        <image class="photo-preview" src="{{photoPath}}" mode="aspectFill" bindtap="onChoosePhoto" />
+        <view class="photo-del" bindtap="onRemovePhoto">✕</view>
+      </view>
+    </block>
+  </view>
+
+  <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '提交保养记录'}}
+  </button>
+</view>

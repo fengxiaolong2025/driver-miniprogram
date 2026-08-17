@@ -1,0 +1,187 @@
+.tabs {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 8rpx;
+  margin-bottom: 24rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 16rpx;
+}
+
+.tab-active {
+  background: #166d43;
+  color: #fff;
+  font-weight: 600;
+}
+
+.date-card {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+}
+
+.date-item {
+  font-size: 26rpx;
+  color: #333;
+  background: #f5f6f8;
+  padding: 8rpx 20rpx;
+  border-radius: 10rpx;
+}
+
+.date-sep {
+  margin: 0 16rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.group-picker {
+  margin-left: auto;
+}
+
+.group-text {
+  font-size: 24rpx;
+  color: #166d43;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #166d43;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  border-radius: 14rpx;
+  padding: 22rpx 0;
+  margin-bottom: 24rpx;
+}
+
+.export-icon {
+  margin-right: 10rpx;
+  font-size: 26rpx;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.summary-row.sub {
+  margin-top: 24rpx;
+  border-top: 1rpx solid #f0f0f0;
+  padding-top: 24rpx;
+}
+
+.summary-cell {
+  text-align: center;
+  flex: 1;
+}
+
+.summary-num {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #166d43;
+}
+
+.summary-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+.table-card {
+  padding: 0 24rpx;
+}
+
+.table-row {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-head {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.table-col {
+  flex: 1;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-col.dim {
+  flex: 2.5;
+}
+
+.table-col.num {
+  flex: 1;
+  text-align: center;
+}
+
+.detail-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.detail-plate {
+  font-weight: 600;
+  font-size: 28rpx;
+  margin-right: 16rpx;
+}
+
+.detail-info {
+  color: #555;
+  font-size: 26rpx;
+}
+
+.detail-cost {
+  margin-left: 12rpx;
+  color: #e67e22;
+  font-weight: 600;
+}
+
+.detail-meta {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 22rpx;
+}
+
+.photo-thumb {
+  margin-top: 12rpx;
+}
+
+.photo-img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 12rpx;
+}
+
+.loading {
+  text-align: center;
+  color: #999;
+  padding: 24rpx;
+}

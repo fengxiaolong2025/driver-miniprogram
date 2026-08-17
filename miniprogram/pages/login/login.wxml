@@ -1,0 +1,36 @@
+<view class="login-page">
+  <!-- 品牌区 -->
+  <view class="brand">
+    <view class="brand-logo">🚛</view>
+    <view class="brand-title">金成峰司机助手</view>
+    <view class="brand-sub">企业微信 · 司机出车管理</view>
+  </view>
+
+  <!-- 登录卡片 -->
+  <view class="login-card">
+    <view class="card-hint">登录后即可提交出车 / 加油 / 保养记录</view>
+
+    <!-- 企业微信账号登录（主按钮） -->
+    <button class="btn-wecom" bindtap="onWecomLogin" loading="{{wecomLoading}}" disabled="{{wecomLoading}}">
+      企业微信账号登录
+    </button>
+    <view class="wecom-tip">使用企业微信授权登录，姓名取自企业微信通讯录</view>
+
+    <!-- 调试登录（无企业微信环境时显示，如微信开发者工具） -->
+    <view wx:if="{{showDebug}}" class="debug-area">
+      <view class="debug-divider">
+        <text class="divider-line"></text>
+        <text class="divider-text">调试环境</text>
+        <text class="divider-line"></text>
+      </view>
+      <input class="debug-input" placeholder="输入调试账号 userid，如 dev001"
+             value="{{debugUserid}}" bindinput="onDebugInput" />
+      <button class="btn-debug" bindtap="onDebugLogin" loading="{{debugLoading}}" disabled="{{debugLoading}}">
+        调试账号登录
+      </button>
+      <view class="err" wx:if="{{err}}">{{err}}</view>
+    </view>
+  </view>
+
+  <view class="login-footer">金成峰车队 · 企业微信小程序</view>
+</view>

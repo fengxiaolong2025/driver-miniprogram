@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">⛽ 我要加油</view>
+
+    <view class="form-item">
+      <view class="form-label">日期</view>
+      <picker class="form-value" mode="date" value="{{refuelDate}}" end="{{today}}" bindchange="onDate">
+        <view class="picker-value">{{refuelDate}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">公里数</view>
+      <input class="form-value input" type="digit" placeholder="当前仪表里程（km）" value="{{odometer}}" bindinput="onOdo" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">行驶公里</view>
+      <input class="form-value input" type="digit" placeholder="本次行驶里程（km）" value="{{travelKm}}" bindinput="onTravel" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">油价</view>
+      <input class="form-value input" type="digit" placeholder="元/升" value="{{oilPrice}}" bindinput="onPrice" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">加油量</view>
+      <input class="form-value input" type="digit" placeholder="升（不填可自动算）" value="{{liters}}" bindinput="onLiters" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">金额</view>
+      <input class="form-value input" type="digit" placeholder="元（不填可自动算）" value="{{amount}}" bindinput="onAmount" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">油耗</view>
+      <input class="form-value input" type="digit" placeholder="升/百公里（留空自动算）" value="{{fuel}}" bindinput="onFuel" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">车牌号</view>
+      <picker class="form-value" mode="selector" range="{{vehicles}}" bindchange="onVeh">
+        <view class="{{vehIndex >= 0 ? 'picker-value' : 'picker-placeholder'}}">
+          {{vehIndex >= 0 ? vehicles[vehIndex] : '选填'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '提交加油记录'}}
+  </button>
+</view>

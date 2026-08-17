@@ -1,0 +1,47 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">🚚 我要出车</view>
+
+    <view class="form-item">
+      <view class="form-label">车牌号</view>
+      <picker class="form-value" mode="selector" range="{{vehicles}}" bindchange="onVeh">
+        <view class="{{vehIndex >= 0 ? 'picker-value' : 'picker-placeholder'}}">
+          {{vehIndex >= 0 ? vehicles[vehIndex] : '请选择车辆'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">出发地</view>
+      <picker class="form-value" mode="selector" range="{{origins}}" bindchange="onOrg">
+        <view class="{{orgIndex >= 0 ? 'picker-value' : 'picker-placeholder'}}">
+          {{orgIndex >= 0 ? origins[orgIndex] : '请选择出发地'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">目的地</view>
+      <picker class="form-value" mode="selector" range="{{destinations}}" bindchange="onDst">
+        <view class="{{dstIndex >= 0 ? 'picker-value' : 'picker-placeholder'}}">
+          {{dstIndex >= 0 ? destinations[dstIndex] : '请选择目的地'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">日期</view>
+      <picker class="form-value" mode="date" value="{{tripDate}}" end="{{today}}" bindchange="onDate">
+        <view class="picker-value">{{tripDate}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <button class="btn-primary" bindtap="onSubmit" disabled="{{submitting}}">
+    {{submitting ? '提交中...' : '提交出车记录'}}
+  </button>
+
+  <view wx:if="{{vehicles.length === 0}}" class="empty">
+    暂无可选车辆，请先联系管理员在「管理设置」中添加
+  </view>
+</view>

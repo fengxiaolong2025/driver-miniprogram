@@ -1,0 +1,47 @@
+<view class="container">
+  <!-- 管理员身份提示 -->
+  <view class="admin-banner">⚙️ 管理员模式 · 维护基础数据</view>
+
+  <!-- Tab -->
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="*this"
+      class="tab {{tab === index ? 'tab-active' : ''}}"
+      data-index="{{index}}" bindtap="onTab">{{item}}</view>
+  </view>
+
+  <!-- 添加输入 -->
+  <view class="card add-card">
+    <input class="add-input" placeholder="{{tab === 0 ? '输入车牌号，如 粤B12345' : '输入地点名称'}}"
+      value="{{input}}" bindinput="onInput" confirm-type="done" bindconfirm="onAdd" />
+    <button class="add-btn" bindtap="onAdd">添加</button>
+  </view>
+
+  <!-- 车辆列表 -->
+  <view wx:if="{{tab === 0}}" class="card">
+    <view wx:for="{{vehicles}}" wx:key="id" class="list-item">
+      <text class="list-name">{{item.plate}}</text>
+      <text class="list-del" data-name="{{item.plate}}" bindtap="onDelete">删除</text>
+    </view>
+    <view wx:if="{{vehicles.length === 0}}" class="empty">暂无车辆，请添加</view>
+  </view>
+
+  <!-- 出发地列表 -->
+  <view wx:if="{{tab === 1}}" class="card">
+    <view wx:for="{{origins}}" wx:key="id" class="list-item">
+      <text class="list-name">{{item.name}}</text>
+      <text class="list-del" data-name="{{item.name}}" data-kind="origin" bindtap="onDelete">删除</text>
+    </view>
+    <view wx:if="{{origins.length === 0}}" class="empty">暂无出发地，请添加</view>
+  </view>
+
+  <!-- 目的地列表 -->
+  <view wx:if="{{tab === 2}}" class="card">
+    <view wx:for="{{destinations}}" wx:key="id" class="list-item">
+      <text class="list-name">{{item.name}}</text>
+      <text class="list-del" data-name="{{item.name}}" data-kind="destination" bindtap="onDelete">删除</text>
+    </view>
+    <view wx:if="{{destinations.length === 0}}" class="empty">暂无目的地，请添加</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="empty">加载中...</view>
+</view>

@@ -1,0 +1,57 @@
+<view class="home">
+  <!-- 顶部问候 -->
+  <view class="hero">
+    <view class="hero-greet">
+      <text class="hero-name">{{user.name || '司机'}}</text>
+      <text wx:if="{{user.is_admin}}" class="tag-admin">管理员</text>
+      <text wx:if="{{debug}}" class="tag-debug">调试</text>
+    </view>
+    <view class="hero-date">{{today}}</view>
+    <view class="hero-sub">金成峰 · 司机出车管理</view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="grid">
+    <view class="cell" bindtap="goTrip">
+      <view class="cell-icon c-green">🚚</view>
+      <view class="cell-name">我要出车</view>
+      <view class="cell-desc">车辆 / 出发地 / 目的地</view>
+    </view>
+    <view class="cell" bindtap="goRefuel">
+      <view class="cell-icon c-orange">⛽</view>
+      <view class="cell-name">我要加油</view>
+      <view class="cell-desc">里程 / 油价 / 升数 / 金额</view>
+    </view>
+    <view class="cell" bindtap="goMaintain">
+      <view class="cell-icon c-blue">🔧</view>
+      <view class="cell-name">我要保养</view>
+      <view class="cell-desc">拍照上传保养记录</view>
+    </view>
+    <view class="cell" bindtap="goReports">
+      <view class="cell-icon c-purple">📊</view>
+      <view class="cell-name">报表统计</view>
+      <view class="cell-desc">出车 / 加油 / 保养报表</view>
+    </view>
+  </view>
+
+  <!-- 管理员入口 -->
+  <view wx:if="{{user.is_admin}}" class="admin-entry" bindtap="goAdmin">
+    <view>
+      <view class="admin-entry-title">⚙️ 管理设置</view>
+      <view class="admin-entry-desc">维护车牌号、出发地、目的地</view>
+    </view>
+    <text class="admin-entry-arrow">›</text>
+  </view>
+
+  <!-- 调试用户切换 -->
+  <view wx:if="{{debug}}" class="debug-switch" bindtap="onSwitchUser">
+    🔄 切换调试用户
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-entry" bindtap="onLogout">
+    退出登录 · 重新选择账号
+  </view>
+
+  <view class="footer">金成峰车队 · 企业微信小程序</view>
+</view>

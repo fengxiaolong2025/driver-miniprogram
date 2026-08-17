@@ -1,0 +1,173 @@
+<view class="container">
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="*this"
+      class="tab {{tab === index ? 'tab-active' : ''}}"
+      data-index="{{index}}" bindtap="onTab">{{item}}</view>
+  </view>
+
+  <!-- 日期范围 -->
+  <view class="card date-card">
+    <picker mode="date" value="{{from}}" end="{{today}}" bindchange="onFrom">
+      <text class="date-item">{{from}}</text>
+    </picker>
+    <text class="date-sep">至</text>
+    <picker mode="date" value="{{to}}" end="{{today}}" bindchange="onTo">
+      <text class="date-item">{{to}}</text>
+    </picker>
+    <picker class="group-picker" mode="selector" range="{{groupOpts}}" value="{{groupIndex}}" bindchange="onGroupChange">
+      <text class="group-text">按{{groupOpts[groupIndex]}} ▾</text>
+    </picker>
+  </view>
+
+  <!-- 导出 Excel -->
+  <view class="export-btn" bindtap="exportExcel">
+    <text class="export-icon">⬇</text>
+    <text>导出 Excel（{{tabs[tab]}}）</text>
+  </view>
+
+  <!-- 出车报表 -->
+  <block wx:if="{{tab === 0}}">
+    <view class="card">
+      <view class="summary-row">
+        <view class="summary-cell">
+          <view class="summary-num">{{tripSummary.total || 0}}</view>
+          <view class="summary-label">总出车次数</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">按{{groupOpts[groupIndex]}}统计</view>
+    <view class="card table-card">
+      <view class="table-row table-head">
+        <view class="table-col dim">{{groupOpts[groupIndex]}}</view>
+        <view class="table-col num">次数</view>
+      </view>
+      <view wx:for="{{tripGroup}}" wx:key="dim_key" class="table-row">
+        <view class="table-col dim">{{item.dim_key}}</view>
+        <view class="table-col num">{{item.cnt}}</view>
+      </view>
+      <view wx:if="{{tripGroup.length === 0}}" class="empty">暂无数据</view>
+    </view>
+
+    <view class="section-title">明细记录</view>
+    <view class="card">
+      <view wx:for="{{tripDetail}}" wx:key="id" class="detail-item">
+        <view class="detail-main">
+          <text class="detail-plate">{{item.plate}}</text>
+          <text class="detail-route">{{item.origin}} → {{item.destination}}</text>
+        </view>
+        <view class="detail-meta">{{item.trip_date}} · {{item.name}}</view>
+      </view>
+      <view wx:if="{{tripDetail.length === 0}}" class="empty">暂无数据</view>
+    </view>
+  </block>
+
+  <!-- 加油报表 -->
+  <block wx:if="{{tab === 1}}">
+    <view class="card">
+      <view class="summary-row">
+        <view class="summary-cell">
+          <view class="summary-num">{{fuelSummary.cnt || 0}}</view>
+          <view class="summary-label">加油次数</view>
+        </view>
+        <view class="summary-cell">
+          <view class="summary-num">¥{{fuelSummary.total_amount || 0}}</view>
+          <view class="summary-label">总金额</view>
+        </view>
+        <view class="summary-cell">
+          <view class="summary-num">{{fuelSummary.total_liters || 0}}</view>
+          <view class="summary-label">总升数</view>
+        </view>
+      </view>
+      <view class="summary-row sub">
+        <view class="summary-cell">
+          <view class="summary-num">{{fuelSummary.avg_price || 0}}</view>
+          <view class="summary-label">平均油价(元/L)</view>
+        </view>
+        <view class="summary-cell">
+          <view class="summary-num">{{fuelSummary.avg_fuel || 0}}</view>
+          <view class="summary-label">平均油耗(L/100km)</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">按{{groupOpts[groupIndex]}}统计</view>
+    <view class="card table-card">
+      <view class="table-row table-head">
+        <view class="table-col dim">{{groupOpts[groupIndex]}}</view>
+        <view class="table-col num">次数</view>
+        <view class="table-col num">金额(¥)</view>
+        <view class="table-col num">升数</view>
+      </view>
+      <view wx:for="{{fuelGroup}}" wx:key="dim_key" class="table-row">
+        <view class="table-col dim">{{item.dim_key}}</view>
+        <view class="table-col num">{{item.cnt}}</view>
+        <view class="table-col num">{{item.total_amount}}</view>
+        <view class="table-col num">{{item.total_liters}}</view>
+      </view>
+      <view wx:if="{{fuelGroup.length === 0}}" class="empty">暂无数据</view>
+    </view>
+
+    <view class="section-title">明细记录</view>
+    <view class="card">
+      <view wx:for="{{fuelDetail}}" wx:key="id" class="detail-item">
+        <view class="detail-main">
+          <text class="detail-plate">{{item.plate || '未填车牌'}}</text>
+          <text class="detail-info">{{item.liters}}L · ¥{{item.amount}} · 油耗{{item.fuel_consumption}}</text>
+        </view>
+        <view class="detail-meta">{{item.refuel_date}} · {{item.name}} · {{item.travel_km}}km</view>
+      </view>
+      <view wx:if="{{fuelDetail.length === 0}}" class="empty">暂无数据</view>
+    </view>
+  </block>
+
+  <!-- 保养报表 -->
+  <block wx:if="{{tab === 2}}">
+    <view class="card">
+      <view class="summary-row">
+        <view class="summary-cell">
+          <view class="summary-num">{{maintSummary.cnt || 0}}</view>
+          <view class="summary-label">保养次数</view>
+        </view>
+        <view class="summary-cell">
+          <view class="summary-num">¥{{maintSummary.total_cost || 0}}</view>
+          <view class="summary-label">总费用</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">按{{groupOpts[groupIndex]}}统计</view>
+    <view class="card table-card">
+      <view class="table-row table-head">
+        <view class="table-col dim">{{groupOpts[groupIndex]}}</view>
+        <view class="table-col num">次数</view>
+        <view class="table-col num">费用(¥)</view>
+      </view>
+      <view wx:for="{{maintGroup}}" wx:key="dim_key" class="table-row">
+        <view class="table-col dim">{{item.dim_key}}</view>
+        <view class="table-col num">{{item.cnt}}</view>
+        <view class="table-col num">{{item.total_cost}}</view>
+      </view>
+      <view wx:if="{{maintGroup.length === 0}}" class="empty">暂无数据</view>
+    </view>
+
+    <view class="section-title">明细记录</view>
+    <view class="card">
+      <view wx:for="{{maintDetail}}" wx:key="id" class="detail-item">
+        <view class="detail-main">
+          <text class="detail-plate">{{item.plate || '未填车牌'}}</text>
+          <text class="detail-info">{{item.items || '（无项目说明）'}}</text>
+          <text wx:if="{{item.cost}}" class="detail-cost">¥{{item.cost}}</text>
+        </view>
+        <view class="detail-meta">{{item.maintain_time}} · {{item.name}}</view>
+        <view wx:if="{{item.photo}}" class="photo-thumb" bindtap="previewPhoto" data-src="{{photoBase}}{{item.photo}}">
+          <image class="photo-img" src="{{photoBase}}{{item.photo}}" mode="aspectFill" />
+        </view>
+      </view>
+      <view wx:if="{{maintDetail.length === 0}}" class="empty">暂无数据</view>
+    </view>
+  </block>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+</view>

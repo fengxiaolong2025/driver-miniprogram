@@ -1,0 +1,47 @@
+.photo-upload {
+  height: 260rpx;
+  background: #fafafa;
+  border: 2rpx dashed #ccc;
+  border-radius: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-plus {
+  font-size: 80rpx;
+  color: #bbb;
+  line-height: 1;
+}
+
+.photo-tip {
+  margin-top: 12rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.photo-preview-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.photo-preview {
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 16rpx;
+}
+
+.photo-del {
+  position: absolute;
+  top: -16rpx;
+  right: -16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 28rpx;
+}
